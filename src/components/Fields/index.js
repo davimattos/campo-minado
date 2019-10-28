@@ -1,29 +1,52 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import params from '../../config/params';
+import {Field, FieldNearMinesText} from './styles';
 
 export default props => {
-  const styledField = [styles.field];
+  const {mined, opened, nearMines} = props;
+  const styledField = [];
 
-  if (styledField.length === 1) {
-    styledField.push(styles.regular);
+  opened && styledField.push(styles.opened);
+  styledField.length === 0 && styledField.push(styles.regular);
+
+  let color = null;
+  if (nearMines > 0) {
+    if (nearMines === 1) {
+      color = '#2A28D7';
+    }
+    if (nearMines === 2) {
+      color = '#2B520F';
+    }
+    if (nearMines > 2 && nearMines < 6) {
+      color = '#F9060A';
+    }
+    if (nearMines >= 6) {
+      color = '#F221A9';
+    }
+
+    return (
+      <Field style={styledField}>
+        {!mined && opened && nearMines > 0 ? (
+          <FieldNearMinesText color={color}>{nearMines}</FieldNearMinesText>
+        ) : (
+          false
+        )}
+      </Field>
+    );
   }
 
-  return <View style={styledField} />;
+  return <Field style={styledField} />;
 };
 
 const styles = StyleSheet.create({
-  field: {
-    height: params.blockSize,
-    width: params.blockSize,
-    borderWidth: params.borderSize,
-  },
   regular: {
-    backgroundColor: '#999',
-    borderLeftColor: '#ccc',
     borderTopColor: '#ccc',
     borderRightColor: '#333',
     borderBottomColor: '#333',
+    borderLeftColor: '#ccc',
+  },
+  opened: {
+    borderColor: '#777',
   },
 });
