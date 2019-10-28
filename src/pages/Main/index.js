@@ -4,6 +4,7 @@ import {Text} from 'react-native';
 import params from '../../config/params';
 
 import {Container} from './styles';
+import Field from '../../components/Fields';
 
 export default function mines() {
   const columnsAmount = params.getColumnsAmount();
@@ -11,8 +12,9 @@ export default function mines() {
   return (
     <Container>
       <Text>
-        {columnsAmount} X {rowsAmount}
+        {rowsAmount} x {columnsAmount}
       </Text>
+      <Field />
     </Container>
   );
 }
