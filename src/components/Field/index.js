@@ -14,33 +14,29 @@ export default props => {
   exploded && styledField.push(styles.exploded);
 
   let color = null;
-  if (nearMines > 0) {
-    if (nearMines === 1) {
-      color = '#2A28D7';
-    }
-    if (nearMines === 2) {
-      color = '#2BF20F';
-    }
-    if (nearMines > 2 && nearMines < 6) {
-      color = '#F9060A';
-    }
-    if (nearMines >= 6) {
-      color = '#F221A9';
-    }
-
-    return (
-      <Field style={styledField}>
-        {!mined && opened && nearMines > 0 ? (
-          <FieldNearMinesText color={color}>{nearMines}</FieldNearMinesText>
-        ) : (
-          false
-        )}
-        {mined && opened && nearMines ? <Mine /> : false}
-      </Field>
-    );
+  if (nearMines === 1) {
+    color = '#2A28D7';
+  }
+  if (nearMines === 2) {
+    color = '#2BF20F';
+  }
+  if (nearMines > 2 && nearMines < 6) {
+    color = '#F9060A';
+  }
+  if (nearMines >= 6) {
+    color = '#F221A9';
   }
 
-  return <Field style={styledField} />;
+  return (
+    <Field style={styledField}>
+      {!mined && opened && nearMines > 0 ? (
+        <FieldNearMinesText color={color}>{nearMines}</FieldNearMinesText>
+      ) : (
+        false
+      )}
+      {mined && opened ? <Mine /> : false}
+    </Field>
+  );
 };
 
 const styles = StyleSheet.create({
