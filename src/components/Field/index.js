@@ -2,16 +2,19 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 
 import Mine from '../Mine';
+import Flag from '../Flag';
 
 import {Field, FieldNearMinesText} from './styles';
 
 export default props => {
-  const {mined, opened, nearMines, exploded} = props;
+  const {mined, opened, nearMines, exploded, flagged} = props;
+
   const styledField = [];
 
   opened && styledField.push(styles.opened);
   styledField.length === 0 && styledField.push(styles.regular);
   exploded && styledField.push(styles.exploded);
+  flagged && styledField.push(styles.flagged);
 
   let color = null;
   if (nearMines === 1) {
@@ -35,6 +38,7 @@ export default props => {
         false
       )}
       {mined && opened ? <Mine /> : false}
+      {flagged && !opened ? <Flag /> : false}
     </Field>
   );
 };
