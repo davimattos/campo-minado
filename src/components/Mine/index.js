@@ -3,7 +3,8 @@ import React from 'react';
 import {
   Container,
   CoreMine,
-  DiagonalLine,
+  DiagonalLineLeft,
+  DiagonalLineRight,
   VerticalLine,
   HorizontalLine,
 } from './styles';
@@ -12,9 +13,10 @@ export default props => {
   return (
     <Container>
       <CoreMine />
-      <DiagonalLine />
-      <VerticalLine />
       <HorizontalLine />
+      <VerticalLine />
+      <DiagonalLineLeft />
+      <DiagonalLineRight />
     </Container>
   );
 };

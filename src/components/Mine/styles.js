@@ -12,19 +12,22 @@ export const CoreMine = styled.View`
   background-color: #000;
 `;
 
-export const DiagonalLine = styled.View`
+export const HorizontalLine = styled.View`
   position: absolute;
   height: 3;
-  width: 20;
+  width: 24;
   border-radius: 3;
   background-color: #000;
+`;
+
+export const DiagonalLineLeft = styled(HorizontalLine)`
   transform: rotate(45deg);
 `;
 
-export const VerticalLine = styled(DiagonalLine)`
-  transform: rotate(90deg);
+export const DiagonalLineRight = styled(HorizontalLine)`
+  transform: rotate(135deg);
 `;
 
-export const HorizontalLine = styled(DiagonalLine)`
-  transform: rotate(135deg);
+export const VerticalLine = styled(HorizontalLine)`
+  transform: rotate(90deg);
 `;
