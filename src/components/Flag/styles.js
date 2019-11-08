@@ -9,33 +9,33 @@ export const Container = styled.View`
 
 export const FlagPole = styled.View`
   position: absolute;
-  height: 14;
-  width: 2;
+  height: ${props => (props.bigger ? 16 : 14)};
+  width: ${props => (props.bigger ? 3 : 2)};
   background-color: ${poleBackground};
-  margin-left: 9;
+  margin-left: ${props => (props.bigger ? 16 : 9)};
 `;
 
 export const Flag = styled.View`
   position: absolute;
-  height: 5;
-  width: 6;
+  height: ${props => (props.bigger ? 8 : 5)};
+  width: ${props => (props.bigger ? 10 : 6)};
   background-color: ${flagBackground};
-  margin-left: 3;
+  margin-left: ${props => (props.bigger ? 6 : 3)};
 `;
 
 export const FirstBase = styled.View`
-  height: 2;
-  width: 6;
+  height: ${props => (props.bigger ? 3 : 2)};
+  width: ${props => (props.bigger ? 10 : 6)};
   background-color: ${poleBackground};
-  margin-left: 7;
-  margin-top: 10;
+  margin-left: ${props => (props.bigger ? 12 : 7)};
+  margin-top: ${props => (props.bigger ? 16 : 10)};
 `;
 
 export const SecondBase = styled.View`
   position: absolute;
-  height: 2;
-  width: 10;
+  height: ${props => (props.bigger ? 3 : 2)};
+  width: ${props => (props.bigger ? 14 : 10)};
   background-color: ${poleBackground};
-  margin-left: 5;
-  margin-top: 12;
+  margin-left: ${props => (props.bigger ? 10 : 5)};
+  margin-top: ${props => (props.bigger ? 18 : 12)};
 `;
