@@ -7,7 +7,7 @@ import Flag from '../Flag';
 import {Field, FieldNearMinesText} from './styles';
 
 export default props => {
-  const {mined, opened, nearMines, exploded, flagged} = props;
+  const {mined, opened, nearMines, exploded, flagged, bigger} = props;
 
   const styledField = [];
 
@@ -38,7 +38,7 @@ export default props => {
         false
       )}
       {mined && opened ? <Mine /> : false}
-      {flagged && !opened ? <Flag /> : false}
+      {flagged && !opened ? <Flag bigger={bigger} /> : false}
     </Field>
   );
 };
