@@ -1,30 +1,32 @@
 import React from 'react';
-import {Text} from 'react-native';
 
 import params from '../../config/params';
+import {createMinedBoard} from '../../config/functions';
 
-import {Container} from './styles';
-import Field from '../../components/Field';
+import {Container, Board} from './styles';
 
-export default function mines() {
-  const columnsAmount = params.getColumnsAmount();
-  const rowsAmount = params.getRowsAmount();
+import MineField from '../../components/MineField';
+
+function Main() {
+  const columns = params.getColumnsAmount();
+  const rows = params.getRowsAmount();
+  const difficultLevel = params.difficultLevel;
+
+  function minesAmount() {
+    return Math.ceil(columns * rows * difficultLevel);
+  }
+
+  function createState() {
+    return createMinedBoard(rows, columns, minesAmount());
+  }
+
   return (
     <Container>
-      <Text>
-        {rowsAmount} x {columnsAmount}
-      </Text>
-      <Field opened />
-      <Field opened nearMines={1} />
-      <Field opened nearMines={2} />
-      <Field opened nearMines={3} />
-      <Field opened nearMines={4} />
-      <Field opened nearMines={5} />
-      <Field opened nearMines={6} />
-      <Field mined />
-      <Field opened exploded />
-      <Field opened mined nearMines />
-      <Field opened mined exploded nearMines />
+      <Board>
+        <MineField board={createState()} />
+      </Board>
     </Container>
   );
 }
+
+export default Main;
