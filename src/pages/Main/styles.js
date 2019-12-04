@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: flex-end;
+  justify-content: center;
+  background-color: #eee;
 `;
 
 export const Board = styled.View`

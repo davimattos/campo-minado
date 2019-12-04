@@ -7,14 +7,17 @@ export default props => {
     const columns = row.map((field, f) => {
       return <Field {...field} key={f} />;
     });
-    return <View key={r}>{columns}</View>;
+    return (
+      <View key={r} style={styles.container}>
+        {columns}
+      </View>
+    );
   });
-  return <View style={styles.container}>{rows}</View>;
+  return <View>{rows}</View>;
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#EEE',
   },
 });
