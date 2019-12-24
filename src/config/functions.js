@@ -65,4 +65,9 @@ const getNeighbours = (board, row, column) => {
   return neighbours;
 };
 
+const safeNeighbourhood = (board, row, column) => {
+  const safes = (result, neighbour) => result && !neighbour.mined;
+  return getNeighbours(board, row, column).reduce(safes, true);
+};
+
 export {createMinedBoard};
