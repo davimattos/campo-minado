@@ -70,4 +70,21 @@ const safeNeighbourhood = (board, row, column) => {
   return getNeighbours(board, row, column).reduce(safes, true);
 };
 
+const openField = (board, row, column) => {
+  const field = board[row][column];
+  if (!field.opened) {
+    field.opened = true;
+    if (field.opened) {
+      field.exploded = true;
+    } else if (safeNeighbourhood(board, row, column)) {
+      getNeighbours(board, row, column).forEach(n =>
+        openField(board, n.row, n.column),
+      );
+    } else {
+      const neighbours = getNeighbours(board, row, column);
+      field.nearMines = neighbours.filter(n => n.mined).length;
+    }
+  }
+};
+
 export {createMinedBoard};
