@@ -87,4 +87,6 @@ const openField = (board, row, column) => {
   }
 };
 
+const fields = board => [].concat(...board);
+
 export {createMinedBoard};
