@@ -89,4 +89,7 @@ const openField = (board, row, column) => {
 
 const fields = board => [].concat(...board);
 
+const hadExplosion = board =>
+  fields(board).filter(field => field.exploded).length > 0;
+
 export {createMinedBoard};
