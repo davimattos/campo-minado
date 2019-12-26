@@ -41,7 +41,7 @@ const createMinedBoard = (rows, columns, minesAmount) => {
 };
 
 const cloneBoard = board => {
-  return board.map(rows => {
+  return board.board.map(rows => {
     return rows.map(field => {
       return {...field};
     });
@@ -54,10 +54,10 @@ const getNeighbours = (board, row, column) => {
   const columns = [column - 1, column, column + 1];
   rows.forEach(r => {
     columns.forEach(c => {
-      const diffent = r !== row || c !== column;
-      const validRow = r >= row && r < board.length;
+      const different = r !== row || c !== column;
+      const validRow = r >= 0 && r < board.length;
       const validColumn = c >= 0 && c < board[0].length;
-      if (diffent && validRow && validColumn) {
+      if (different && validRow && validColumn) {
         neighbours.push(board[r][c]);
       }
     });
@@ -74,7 +74,7 @@ const openField = (board, row, column) => {
   const field = board[row][column];
   if (!field.opened) {
     field.opened = true;
-    if (field.opened) {
+    if (field.mined) {
       field.exploded = true;
     } else if (safeNeighbourhood(board, row, column)) {
       getNeighbours(board, row, column).forEach(n =>
