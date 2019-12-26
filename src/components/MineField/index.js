@@ -3,9 +3,11 @@ import {View, StyleSheet} from 'react-native';
 import Field from '../Field';
 
 export default props => {
-  const rows = props.board.map((row, r) => {
-    const columns = row.map((field, f) => {
-      return <Field {...field} key={f} />;
+  const {originalBoard, onOpenField} = props;
+
+  const rows = originalBoard.board.map((row, r) => {
+    const columns = row.map((field, c) => {
+      return <Field {...field} key={c} onOpen={() => onOpenField(r, c)} />;
     });
     return (
       <View key={r} style={styles.container}>
