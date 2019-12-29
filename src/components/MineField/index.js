@@ -3,11 +3,18 @@ import {View, StyleSheet} from 'react-native';
 import Field from '../Field';
 
 export default props => {
-  const {originalBoard, onOpenField} = props;
+  const {originalBoard, onOpenField, onSelectField} = props;
 
   const rows = originalBoard.board.map((row, r) => {
     const columns = row.map((field, c) => {
-      return <Field {...field} key={c} onOpen={() => onOpenField(r, c)} />;
+      return (
+        <Field
+          {...field}
+          key={c}
+          onOpen={() => onOpenField(r, c)}
+          onSelect={e => onSelectField(r, c, e)}
+        />
+      );
     });
     return (
       <View key={r} style={styles.container}>

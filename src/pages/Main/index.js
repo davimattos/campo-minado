@@ -8,6 +8,7 @@ import {
   hadExplosion,
   wonGame,
   showMines,
+  invertFlag,
 } from '../../config/functions';
 
 import {Container, Board} from './styles';
@@ -56,10 +57,26 @@ function Main() {
     setOriginalBoard({board, lost, won});
   };
 
+  const onSelectField = (row, column) => {
+    const board = cloneBoard(originalBoard.board);
+    invertFlag(board, row, column);
+    const won = wonGame(board);
+
+    if (won) {
+      Alert.alert('Parabéns', 'Você venceu!');
+    }
+
+    setOriginalBoard({board, won});
+  };
+
   return (
     <Container>
       <Board>
-        <MineField originalBoard={originalBoard} onOpenField={onOpenField} />
+        <MineField
+          originalBoard={originalBoard}
+          onOpenField={onOpenField}
+          onSelectField={onSelectField}
+        />
       </Board>
     </Container>
   );

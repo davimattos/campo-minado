@@ -7,7 +7,16 @@ import Flag from '../Flag';
 import {Field, FieldNearMinesText} from './styles';
 
 export default props => {
-  const {mined, opened, nearMines, exploded, flagged, bigger, onOpen} = props;
+  const {
+    mined,
+    opened,
+    nearMines,
+    exploded,
+    flagged,
+    bigger,
+    onOpen,
+    onSelect,
+  } = props;
 
   const styledField = [];
 
@@ -31,7 +40,7 @@ export default props => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={onOpen}>
+    <TouchableWithoutFeedback onPress={onOpen} onLongPress={onSelect}>
       <Field style={styledField}>
         {!mined && opened && nearMines > 0 ? (
           <FieldNearMinesText color={color}>{nearMines}</FieldNearMinesText>
