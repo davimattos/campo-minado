@@ -9,11 +9,13 @@ import {
   wonGame,
   showMines,
   invertFlag,
+  flagsUsed,
 } from '../../config/functions';
 
 import {Container, Board} from './styles';
 
 import MineField from '../../components/MineField';
+import Header from '../../components/Header';
 import {Alert} from 'react-native';
 
 function Main() {
@@ -71,6 +73,10 @@ function Main() {
 
   return (
     <Container>
+      <Header
+        flagsLeft={minesAmount() - flagsUsed(originalBoard.board)}
+        onNewGame={() => setOriginalBoard(createState())}
+      />
       <Board>
         <MineField
           originalBoard={originalBoard}
